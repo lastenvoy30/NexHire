@@ -16,5 +16,10 @@
     "url": "https://github.com/lastenvoy30/GEN-AI/issues"
   },
   "homepage": "https://github.com/lastenvoy30/GEN-AI#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.0"
+  }
 }
