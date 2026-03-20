@@ -2,6 +2,7 @@ const express = require('express');
 const authRouter = express.Router();
 const authController = require("../controllers/auth.controller");
 const bcrypt = require("bcryptjs");
+const tokenBlacklistModel = require("../models/blacklist.model"); 
 
 /**
  * @route POST /api/auth/register
@@ -17,6 +18,16 @@ authRouter.post('/register', authController.registerUserController);
  */
 
 authRouter.post('/login', authController.loginUserController);
+
+
+/**
+ * @route POST /api/auth/logout
+ * @description Logout a user,expect token in the request header
+ * @access Public
+ */
+
+authRouter.post('/logout', authController.logoutUserController);
+
 
 
 
