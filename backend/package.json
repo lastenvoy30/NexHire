@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lastenvoy30/GEN-AI#readme",
   "description": "",
   "dependencies": {
+    "@google/genai": "^1.47.0",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
