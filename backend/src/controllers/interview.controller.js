@@ -19,13 +19,34 @@ async function generateInterViewReportController(req, res) {
         jobDescription
     })
 
-    const interviewReport = await interviewReportModel.create({
-        user: req.user.id,
-        resume: resumeContent.text,
-        selfDescription,
-        jobDescription,
-        ...interViewReportByAi
-    })
+function extractTitle(jobDescription) {
+    if (!jobDescription) return "Untitled Role";
+
+    const firstLine = jobDescription.split("\n")[0].trim();
+
+    if (firstLine && firstLine.length < 100) {
+        return firstLine;
+    }
+
+    return "Full Stack Developer";
+}
+
+if (!interViewReportByAi) {
+    return res.status(500).json({
+        message: "AI failed to generate report"
+    });
+}
+
+const interviewReport = await interviewReportModel.create({
+    user: req.user.id,
+    resume: resumeContent.text,
+    selfDescription,
+    jobDescription,
+
+    title: interViewReportByAi.title || extractTitle(jobDescription), // ✅ FIX
+
+    ...interViewReportByAi
+})
 
     res.status(201).json({
         message: "Interview report generated successfully.",
