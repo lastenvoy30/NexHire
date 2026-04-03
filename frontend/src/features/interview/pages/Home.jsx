@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router'
 
 const Home = () => {
 
-    const { loading, error, generateReport, reports } = useInterview()
+    const { loading, error, generateReport, reports, deleteReport } = useInterview()  // ✅ added deleteReport
     const [jobDescription, setJobDescription] = useState("")
     const [selfDescription, setSelfDescription] = useState("")
     const resumeInputRef = useRef()
@@ -14,7 +14,12 @@ const Home = () => {
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0]
         const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-        if (data) navigate(`/interview/${data._id}`) 
+        if (data) navigate(`/interview/${data._id}`)
+    }
+
+    const handleDelete = async (e, reportId) => {
+        e.stopPropagation()  // ✅ prevent navigating to report when clicking delete
+        await deleteReport(reportId)
     }
 
     if (loading) {
@@ -29,7 +34,6 @@ const Home = () => {
     return (
         <div className='home-page'>
 
-            {/* ✅ Error Banner */}
             {error && (
                 <div className='error-banner'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
@@ -37,17 +41,14 @@ const Home = () => {
                 </div>
             )}
 
-            {/* Page Header */}
             <header className='page-header'>
                 <h1>Create Your Custom <span className='highlight'>Interview Plan</span></h1>
                 <p>Let our AI analyze the job requirements and your unique profile to build a winning strategy.</p>
             </header>
 
-            {/* Main Card */}
             <div className='interview-card'>
                 <div className='interview-card__body'>
 
-                    {/* Left Panel - Job Description */}
                     <div className='panel panel--left'>
                         <div className='panel__header'>
                             <span className='panel__icon'>
@@ -67,7 +68,6 @@ const Home = () => {
 
                     <div className='panel-divider' />
 
-                    {/* Right Panel - Profile */}
                     <div className='panel panel--right'>
                         <div className='panel__header'>
                             <span className='panel__icon'>
@@ -113,12 +113,11 @@ const Home = () => {
                     </div>
                 </div>
 
-                {/* Card Footer */}
                 <div className='interview-card__footer'>
                     <span className='footer-info'>AI-Powered Strategy Generation &bull; Approx 30s</span>
                     <button
                         onClick={handleGenerateReport}
-                        disabled={loading}                          
+                        disabled={loading}
                         className='generate-btn'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z" /></svg>
                         Generate My Interview Strategy
@@ -134,7 +133,16 @@ const Home = () => {
                             <li key={report._id} className='report-item' onClick={() => navigate(`/interview/${report._id}`)}>
                                 <h3>{report.title || 'Untitled Position'}</h3>
                                 <p className='report-meta'>Generated on {new Date(report.createdAt).toLocaleDateString()}</p>
-                                <p className={`match-score ${report.matchScore >= 80 ? 'score--high' : report.matchScore >= 60 ? 'score--mid' : 'score--low'}`}>Match Score: {report.matchScore}%</p>
+                                <p className={`match-score ${report.matchScore >= 80 ? 'score--high' : report.matchScore >= 60 ? 'score--mid' : 'score--low'}`}>
+                                    Match Score: {report.matchScore}%
+                                </p>
+                                <button
+                                    className='report-item__delete'
+                                    onClick={(e) => handleDelete(e, report._id)}
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                                    Delete
+                                </button>
                             </li>
                         ))}
                     </ul>

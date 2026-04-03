@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://nexhire-41vu.onrender.com",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
 })
 
@@ -55,5 +55,15 @@ export const generateResumePdf = async ({ interviewReportId }) => {
         
     )
 
+
+    return response.data
+}
+
+/**
+ * @description Service to delete interview report by interviewId.
+ */
+
+export const deleteInterviewReport = async (interviewId) => {
+    const response = await api.delete(`/api/interview/${interviewId}`)
     return response.data
 }
