@@ -1,7 +1,6 @@
 import axios from "axios";
-import { use } from "react";
 const api = axios.create({
-  baseURL:"http://localhost:3000",
+  baseURL: "https://nexhire-41vu.onrender.com",
   withCredentials:true
 })
 
