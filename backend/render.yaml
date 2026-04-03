@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: nexhire-backend
+    runtime: node
+    buildCommand: apt-get install -y google-chrome-stable && npm install
+    startCommand: node server.js
