@@ -70,21 +70,11 @@ Make sure to generate at least 5 technical questions, 3 behavioral questions, id
 //     return pdfBuffer
 // }
 
+const htmlPdf = require("html-pdf-node")
+
 async function generatePdfFromHtml(htmlContent) {
-    const browser = await puppeteer.launch({
-        headless: true,
-        args: [
-            "--no-sandbox",
-            "--disable-setuid-sandbox",
-            "--disable-dev-shm-usage",
-            "--disable-gpu"
-        ]
-    })
-
-    const page = await browser.newPage()
-    await page.setContent(htmlContent, { waitUntil: "networkidle0" })
-
-    const pdfBuffer = await page.pdf({
+    const file = { content: htmlContent }
+    const options = {
         format: "A4",
         margin: {
             top: "20mm",
@@ -92,9 +82,9 @@ async function generatePdfFromHtml(htmlContent) {
             left: "15mm",
             right: "15mm"
         }
-    })
+    }
 
-    await browser.close()
+    const pdfBuffer = await htmlPdf.generatePdf(file, options)
     return pdfBuffer
 }
 
