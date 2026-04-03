@@ -1,6 +1,6 @@
 const { GoogleGenAI } = require("@google/genai")
 const { z } = require("zod")
-const puppeteer = require("puppeteer")
+const htmlPdf = require("html-pdf-node")
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GOOGLE_GENAI_API_KEY
@@ -50,28 +50,6 @@ Make sure to generate at least 5 technical questions, 3 behavioral questions, id
     return JSON.parse(response.text)
 }
 
-
-// async function generatePdfFromHtml(htmlContent) {
-//     const browser = await puppeteer.launch()
-//     const page = await browser.newPage();
-//     await page.setContent(htmlContent, { waitUntil: "networkidle0" })
-
-//     const pdfBuffer = await page.pdf({
-//         format: "A4", margin: {
-//             top: "20mm",
-//             bottom: "20mm",
-//             left: "15mm",
-//             right: "15mm"
-//         }
-//     })
-
-//     await browser.close()
-
-//     return pdfBuffer
-// }
-
-const htmlPdf = require("html-pdf-node")
-
 async function generatePdfFromHtml(htmlContent) {
     const file = { content: htmlContent }
     const options = {
@@ -108,11 +86,11 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
                     `
 
     const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",                           
+        model: "gemini-2.5-flash",
         contents: prompt,
         config: {
             responseMimeType: "application/json",
-            responseJsonSchema: z.toJSONSchema(resumePdfSchema), 
+            responseJsonSchema: z.toJSONSchema(resumePdfSchema),
         }
     })
 
@@ -121,4 +99,5 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
 
     return pdfBuffer
 }
+
 module.exports = { generateInterviewReport, generateResumePdf }
