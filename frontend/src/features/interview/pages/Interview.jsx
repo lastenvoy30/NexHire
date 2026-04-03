@@ -58,8 +58,8 @@ const RoadMapDay = ({ day }) => (
 
 // ── Main Component ────────────────────────────────────────────────────────────
 const Interview = () => {
-    const [ activeNav, setActiveNav ] = useState('technical')
-    const { report, getReportById, loading, getResumePdf } = useInterview()
+    const [activeNav, setActiveNav] = useState('technical')
+    const { report, getReportById, loading, error, getResumePdf } = useInterview()  // ✅ added error
     const { interviewId } = useParams()
 
     useEffect(() => {
@@ -68,15 +68,25 @@ const Interview = () => {
         }
     }, [getReportById, interviewId])
 
-
+    if (error) {
+        return (
+            <main className='loading-screen'>
+                <h1>Something went wrong</h1>
+                <p className='loading-hint'>{error}</p>
+            </main>
+        )
+    }
 
     if (loading || !report) {
         return (
             <main className='loading-screen'>
-                <h1>Loading your interview plan...</h1>
+                <h1>Loading your interview plan</h1>
+                <p className='loading-hint'>Hang tight, fetching your report...</p>
             </main>
         )
     }
+
+    // ... rest of component unchanged
 
     const scoreColor =
         report.matchScore >= 80 ? 'score--high' :

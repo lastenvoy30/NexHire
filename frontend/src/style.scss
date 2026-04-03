@@ -228,3 +228,39 @@ body::before {
     z-index: 9999;
     opacity: 0.4;
 }
+// ── Error Banner ──────────────────────────────────────────────────────────────
+.error-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-5);
+    background: rgba(255, 77, 106, 0.08);
+    border: 1px solid rgba(255, 77, 106, 0.25);
+    border-radius: var(--radius-md);
+    color: var(--red);
+    font-size: 0.875rem;
+    font-weight: 500;
+    width: 100%;
+    max-width: 920px;
+    position: relative;
+    z-index: 1;
+}
+
+// ── Loading Hint ──────────────────────────────────────────────────────────────
+.loading-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    text-align: center;
+    max-width: 360px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+// ── Disabled Button ───────────────────────────────────────────────────────────
+.generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
