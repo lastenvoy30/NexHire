@@ -50,21 +50,6 @@ Make sure to generate at least 5 technical questions, 3 behavioral questions, id
     return JSON.parse(response.text)
 }
 
-async function generatePdfFromHtml(htmlContent) {
-    const file = { content: htmlContent }
-    const options = {
-        format: "A4",
-        margin: {
-            top: "20mm",
-            bottom: "20mm",
-            left: "15mm",
-            right: "15mm"
-        }
-    }
-
-    const pdfBuffer = await htmlPdf.generatePdf(file, options)
-    return pdfBuffer
-}
 
 async function generateResumePdf({ resume, selfDescription, jobDescription }) {
 
@@ -94,10 +79,7 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
         }
     })
 
-    const jsonContent = JSON.parse(response.text)
-    const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
-
-    return pdfBuffer
+    return JSON.parse(response.text).html
 }
 
 module.exports = { generateInterviewReport, generateResumePdf }

@@ -57,23 +57,49 @@ export const useInterview = () => {
         return response.interviewReports
     }, [setLoading, setReports])
 
+    // const getResumePdf = async (interviewReportId) => {
+    //     setLoading(true)
+    //     let response = null
+    //     try {
+    //         response = await generateResumePdf({ interviewReportId })
+    //         const url = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }))
+    //         const link = document.createElement("a")
+    //         link.href = url
+    //         link.setAttribute("download", `resume_${interviewReportId}.pdf`)
+    //         document.body.appendChild(link)
+    //         link.click()
+    //     } catch (error) {
+    //         console.log(error)
+    //     } finally {
+    //         setLoading(false)
+    //     }
+    // }
+
     const getResumePdf = async (interviewReportId) => {
-        setLoading(true)
-        let response = null
-        try {
-            response = await generateResumePdf({ interviewReportId })
-            const url = window.URL.createObjectURL(new Blob([response], { type: "application/pdf" }))
-            const link = document.createElement("a")
-            link.href = url
-            link.setAttribute("download", `resume_${interviewReportId}.pdf`)
-            document.body.appendChild(link)
-            link.click()
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false)
+    setLoading(true)
+    try {
+        const response = await generateResumePdf({ interviewReportId })
+        const html = response.html
+
+        // ✅ Dynamically import html2pdf and generate in browser
+        const html2pdf = (await import('html2pdf.js')).default
+
+        const opt = {
+            margin: [15, 15],
+            filename: `resume_${interviewReportId}.pdf`,
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
         }
+
+        html2pdf().set(opt).from(html).save()
+
+    } catch (error) {
+        console.log(error)
+    } finally {
+        setLoading(false)
     }
+}
 
     useEffect(() => {
         if (interviewId) {
