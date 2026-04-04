@@ -2,11 +2,18 @@ import { createBrowserRouter } from "react-router";
 import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
 import Protected from "./features/auth/components/Protected";
-import Home from "./features/interview/pages/Home";
-import Interview from "./features/interview/pages/Interview";
 import Layout from "./components/Layout";
+import LandingPage from "./pages/LandingPage";
+import Dashboard from "./pages/Dashboard";
+import JobMatch from "./features/interview/pages/JobMatch";
+import InterviewPrep from "./features/interview/pages/InterviewPrep";
+import ResumeLab from "./features/interview/pages/ResumeLab";
 
 export const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <LandingPage />
+    },
     {
         path: "/login",
         element: <Login />
@@ -16,11 +23,19 @@ export const router = createBrowserRouter([
         element: <Register />
     },
     {
-        path: "/",
-        element: <Protected><Layout><Home /></Layout></Protected>
+        path: "/dashboard",
+        element: <Protected><Layout><Dashboard /></Layout></Protected>
     },
     {
-        path: "/interview/:interviewId",
-        element: <Protected><Layout><Interview /></Layout></Protected>
+        path: "/job-match",
+        element: <Protected><Layout><JobMatch /></Layout></Protected>
+    },
+    {
+        path: "/interview-prep/:interviewId?",
+        element: <Protected><Layout><InterviewPrep /></Layout></Protected>
+    },
+    {
+        path: "/resume-lab",
+        element: <Protected><Layout><ResumeLab /></Layout></Protected>
     }
-])
+]);

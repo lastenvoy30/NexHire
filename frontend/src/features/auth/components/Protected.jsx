@@ -7,7 +7,7 @@ const Protected = ({children}) => {
 
 
     if(loading){
-        return (<main><h1>Loading...</h1></main>)
+        return <div style={{ visibility: 'hidden', minHeight: '100vh' }} />
     }
 
     if(!user){

@@ -1,0 +1,492 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// NexHire — Dashboard Styles
+// ─────────────────────────────────────────────────────────────────────────────
+
+.dashboard-page {
+    padding: 2.5rem max(2rem, 5vw);
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+.db-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    &__text {
+        h1 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 800;
+            color: #002045;
+            letter-spacing: -0.04em;
+            margin: 0 0 0.5rem;
+            line-height: 1.1;
+
+            span { font-style: italic; }
+        }
+
+        p {
+            font-size: 0.9375rem;
+            color: #43474e;
+            margin: 0;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}
+
+// ── Buttons ───────────────────────────────────────────────────────────────────
+.db-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.625rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 200ms ease-in-out;
+    white-space: nowrap;
+
+    &--primary {
+        background: #002045;
+        color: #fff;
+        &:hover { background: #1a365d; }
+    }
+
+    &--outline {
+        background: transparent;
+        border: 1.5px solid #c4c6cf;
+        color: #002045;
+        &:hover { background: #f2f4f6; }
+    }
+
+    &--ghost-light {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1.5px solid rgba(255, 255, 255, 0.3);
+        color: #fff;
+        &:hover { background: rgba(255, 255, 255, 0.25); }
+    }
+
+    &--full { width: 100%; margin-top: auto; }
+}
+
+// ── Metrics ───────────────────────────────────────────────────────────────────
+.db-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.db-metric-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 16px rgba(0, 32, 69, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 250ms ease;
+
+    &:hover {
+        box-shadow: 0 8px 32px rgba(0, 32, 69, 0.08);
+    }
+
+    &__label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #74777f;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+    }
+
+    &__value {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: #002045;
+        letter-spacing: -0.05em;
+        line-height: 1.1;
+        margin: 0.25rem 0;
+    }
+
+    &__trend {
+        font-size: 0.8rem;
+        font-weight: 500;
+
+        &--up { color: #13696a; }
+        &--neutral { color: #1910af; }
+        &--priority { color: #43474e; }
+    }
+
+    &__icon {
+        position: absolute;
+        right: 1.5rem;
+        bottom: 1.25rem;
+        font-size: 2rem;
+        opacity: 0.08;
+    }
+}
+
+// ── Panels ────────────────────────────────────────────────────────────────────
+.db-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 1.25rem;
+
+    @media(max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.db-panel {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.75rem;
+    box-shadow: 0 4px 16px rgba(0, 32, 69, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #002045;
+            margin: 0;
+        }
+    }
+}
+
+.db-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #13696a;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+
+.db-analysis-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.db-analysis-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: 0.75rem;
+    background: #f7f9fb;
+    transition: background 200ms ease;
+    cursor: pointer;
+
+    &:hover { background: #eceef0; }
+
+    &__icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+
+        strong {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #002045;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        span {
+            font-size: 0.76rem;
+            color: #74777f;
+        }
+    }
+
+    &__arrow {
+        background: none;
+        border: none;
+        color: #c4c6cf;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 0.5rem;
+        transition: color 180ms, background 180ms;
+
+        &:hover { background: #e6e8ea; color: #002045; }
+    }
+}
+
+// ── Profile Strength ──────────────────────────────────────────────────────────
+.db-strength {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &__score-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &__label {
+        font-size: 0.78rem;
+        color: #74777f;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+    }
+
+    &__score {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #002045;
+
+        small {
+            font-size: 0.875rem;
+            color: #74777f;
+            font-weight: 400;
+        }
+    }
+
+    &__bar {
+        height: 6px;
+        background: #eceef0;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    &__fill {
+        height: 100%;
+        background: linear-gradient(90deg, #13696a, #89d3d4);
+        border-radius: 3px;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: #43474e;
+    }
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.done { background: #13696a; }
+    &.pending { background: #c4c6cf; }
+}
+
+// ── Bottom Grid ───────────────────────────────────────────────────────────────
+.db-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 1.25rem;
+
+    @media(max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.db-badge {
+    display: inline-flex;
+    padding: 0.2rem 0.625rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.85);
+    width: fit-content;
+}
+
+// ── AI Insight ────────────────────────────────────────────────────────────────
+.db-ai-insight {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a365d 0%, #002045 100%);
+    border-radius: 1rem;
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    gap: 1.5rem;
+    align-items: center;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        z-index: 1;
+
+        h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.03em;
+            margin: 0;
+        }
+
+        p {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.72);
+            margin: 0;
+        }
+    }
+
+    &__decor {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        z-index: 1;
+    }
+}
+
+.db-ai-decor-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(163, 237, 237, 0.2);
+
+    &--1 {
+        width: 120px;
+        height: 120px;
+    }
+
+    &--2 {
+        width: 80px;
+        height: 80px;
+        border-color: rgba(163, 237, 237, 0.15);
+    }
+}
+
+.db-ai-decor-core {
+    width: 44px;
+    height: 44px;
+    background: rgba(163, 237, 237, 0.12);
+    border: 1px solid rgba(163, 237, 237, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #89d3d4;
+    z-index: 1;
+}
+
+// ── Next Interview ────────────────────────────────────────────────────────────
+.db-next-interview {
+    &.db-panel { justify-content: flex-start; }
+}
+
+.db-next-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #74777f;
+    text-transform: uppercase;
+}
+
+.db-next-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #13696a;
+    background: rgba(163, 237, 237, 0.3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2rem;
+}
+
+.db-next-company {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #002045;
+    margin: 0.25rem 0 0.1rem;
+}
+
+.db-next-role {
+    font-size: 0.875rem;
+    color: #74777f;
+    margin: 0 0 1rem;
+}
+
+.db-next-avatars {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.db-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1910af, #1a365d);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+.db-avatar-more {
+    font-size: 0.72rem;
+    color: #74777f;
+    margin-left: 0.5rem;
+    font-weight: 600;
+}

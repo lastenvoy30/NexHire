@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexHire | Intelligent Resume Analyzer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#455f88",
+                        "secondary": "#13696a",
+                        "outline-variant": "#c4c6cf",
+                        "tertiary": "#09007b",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#43474e",
+                        "secondary-fixed": "#a5eff0",
+                        "tertiary-fixed": "#e1e0ff",
+                        "on-secondary-fixed": "#002020",
+                        "primary-container": "#1a365d",
+                        "on-primary-fixed-variant": "#2d476f",
+                        "on-secondary-fixed-variant": "#004f50",
+                        "surface-bright": "#f7f9fb",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary-container": "#a2eded",
+                        "inverse-primary": "#adc7f7",
+                        "on-secondary-container": "#1a6d6e",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-low": "#f2f4f6",
+                        "error": "#ba1a1a",
+                        "on-background": "#191c1e",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#002045",
+                        "surface-container": "#eceef0",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed": "#07006c",
+                        "on-primary-fixed": "#001b3c",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#74777f",
+                        "on-tertiary-container": "#9194ff",
+                        "tertiary-container": "#1910af",
+                        "on-primary-container": "#86a0cd",
+                        "primary-fixed-dim": "#adc7f7",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#d6e3ff",
+                        "background": "#f7f9fb",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed-dim": "#89d3d4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .ai-gradient {
+            background: linear-gradient(135deg, #1910af 0%, #1a365d 100%);
+        }
+        .glass-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-none bg-white/80 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto w-full">
+<div class="text-xl font-bold tracking-tight text-blue-900 brand-font">NexHire</div>
+<div class="hidden md:flex items-center space-x-8 font-medium text-sm font-plus-jakarta-sans">
+<a class="text-slate-500 hover:text-blue-700 transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-blue-900 border-b-2 border-blue-900 pb-1" href="#">Resume Lab</a>
+<a class="text-slate-500 hover:text-blue-700 transition-colors duration-200" href="#">Job Match</a>
+<a class="text-slate-500 hover:text-blue-700 transition-colors duration-200" href="#">Interview Prep</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-semibold text-blue-900 px-4 py-2 rounded-xl hover:bg-slate-100 transition-all">Log In</button>
+<button class="bg-primary text-on-primary text-sm font-semibold px-6 py-2.5 rounded-xl active:opacity-80 active:scale-95 transition-all">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen">
+<!-- Hero Header Section -->
+<header class="mb-12">
+<h1 class="text-5xl font-extrabold tracking-tight text-primary mb-4 leading-tight">
+                Refine Your Path with <br/>
+<span class="text-secondary">Intelligent Precision.</span>
+</h1>
+<p class="text-on-surface-variant text-lg max-w-2xl leading-relaxed">
+                NexHire acts as your personal career concierge, using generative intelligence to align your unique story with the world's most demanding roles.
+            </p>
+</header>
+<!-- Main Two-Panel Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start relative">
+<!-- Left Panel: Resume -->
+<section class="bg-surface-container-low rounded-[2rem] p-8 min-h-[600px] flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-lg">description</span>
+</div>
+<h2 class="text-xl font-bold text-primary">Your Resume</h2>
+</div>
+<span class="text-xs font-semibold tracking-widest uppercase text-outline">Section 01</span>
+</div>
+<div class="flex-grow bg-surface-container-lowest rounded-2xl border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center p-12 text-center group hover:border-secondary transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-2xl bg-surface-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl text-secondary">cloud_upload</span>
+</div>
+<h3 class="text-lg font-bold text-primary mb-2">Upload Professional Profile</h3>
+<p class="text-sm text-on-surface-variant mb-6 max-w-xs">Drop your PDF or DOCX here, or click to browse your local storage.</p>
+<div class="w-full h-px bg-surface-container-high mb-6"></div>
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm font-body leading-relaxed text-on-surface p-0 resize-none min-h-[150px]" placeholder="Or paste your resume content directly here..."></textarea>
+</div>
+</section>
+<!-- Central Floating Action (Desktop) -->
+<div class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex-col items-center gap-4">
+<button class="ai-gradient w-24 h-24 rounded-full flex items-center justify-center shadow-2xl border-4 border-white active:scale-90 transition-all group">
+<span class="material-symbols-outlined text-white text-3xl group-hover:rotate-180 transition-transform duration-500">auto_awesome</span>
+</button>
+<div class="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full shadow-sm text-xs font-bold tracking-widest text-primary uppercase whitespace-nowrap">
+                    Analyze and Match
+                </div>
+</div>
+<!-- Right Panel: Job Description -->
+<section class="bg-surface-container-low rounded-[2rem] p-8 min-h-[600px] flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-lg">work_outline</span>
+</div>
+<h2 class="text-xl font-bold text-primary">Target Role</h2>
+</div>
+<span class="text-xs font-semibold tracking-widest uppercase text-outline">Section 02</span>
+</div>
+<div class="flex-grow bg-surface-container-lowest rounded-2xl p-8 flex flex-col">
+<div class="mb-6">
+<label class="text-[10px] font-black uppercase tracking-widest text-outline block mb-2">Job Description</label>
+<textarea class="w-full bg-surface-container-high/30 rounded-xl p-4 border-none focus:ring-2 focus:ring-secondary/20 text-sm font-body leading-relaxed text-on-surface h-[380px] resize-none" placeholder="Paste the specific job description you are targeting to discover your compatibility score and optimization points..."></textarea>
+</div>
+<div class="mt-auto flex items-center gap-3 p-4 bg-tertiary-fixed/30 rounded-xl">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">info</span>
+<p class="text-xs font-medium text-on-tertiary-fixed-variant">AI will look for keywords, seniority signals, and cultural fit markers.</p>
+</div>
+</div>
+</section>
+<!-- Mobile Action Button -->
+<div class="lg:hidden flex flex-col items-center gap-4 mt-8">
+<button class="ai-gradient w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-white font-bold shadow-xl">
+<span class="material-symbols-outlined">auto_awesome</span>
+                    Analyze and Match
+                </button>
+</div>
+</div>
+<!-- Gemini-Powered Indicator & Progress -->
+<div class="mt-16 bg-surface-container-lowest rounded-[2rem] p-10 shadow-sm overflow-hidden relative border border-outline-variant/10">
+<div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-4 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-secondary mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="text-xs font-black uppercase tracking-[0.2em]">Gemini-Powered Analysis</span>
+</div>
+<h3 class="text-2xl font-bold text-primary">Intelligent Alignment</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Our neural engine is currently processing your professional trajectory against industry-specific benchmarks.</p>
+</div>
+<div class="md:col-span-8">
+<div class="flex justify-between items-end mb-4">
+<span class="text-sm font-bold text-primary">Processing Narrative Layers...</span>
+<span class="text-sm font-black text-secondary">74%</span>
+</div>
+<!-- The Career Progress Glass-Track -->
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full ai-gradient w-[74%] rounded-full relative">
+<div class="absolute inset-0 bg-white/20 blur-[2px]"></div>
+</div>
+</div>
+<div class="flex gap-6 mt-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold uppercase text-outline">Scanning Skills</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-bold uppercase text-outline">Sentiment Check</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-surface-dim"></div>
+<span class="text-[10px] font-bold uppercase text-outline">Optimizing Keywords</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative AI background element -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
+</div>
+<!-- Asymmetric Insight Preview -->
+<div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-white rounded-[2rem] p-8 border border-outline-variant/10 flex gap-8">
+<div class="w-1/3 hidden md:block overflow-hidden rounded-2xl">
+<img class="w-full h-full object-cover" data-alt="professional workspace with high-end tech accessories, soft morning light, and minimalist aesthetic for high-achieving career focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMSHEi5xdesFmJcIYpZV5hKHqOCuQY5C4kIrpZLzZFOT9P6eqnrL8ahIOpm_z9kk0ycjS6JZf5lIZ6rC0o6QPkh6y6jb0T1vu4lYP1tei8nDvs6FOeKQmqs1ZnxDa_gqTFOZUqPMcMmehJ0cPO6rVxXu7tFDFsjRdAzu6Gf3onE7vdI_5hXcdtalRmKjWppCqQuYqb-pUaXRSSQhalif1GfyVSOydiBR3usr2pcGBqx0K6b9Irdu_ktjPD9-X8bInxQuNA90S0okge"/>
+</div>
+<div class="flex-grow flex flex-col justify-center">
+<span class="text-secondary font-bold text-sm mb-2">Premium Feature</span>
+<h4 class="text-xl font-bold text-primary mb-4">Deep Semantic Match Analysis</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed mb-6">Go beyond keyword matching. Our AI understands the context of your achievements and how they translate to specific job requirements.</p>
+<button class="flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-2 transition-transform">
+                        Explore Full Insights <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="bg-secondary-fixed rounded-[2rem] p-8 flex flex-col justify-between">
+<div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-secondary mb-6">
+<span class="material-symbols-outlined">psychology</span>
+</div>
+<div>
+<h4 class="text-xl font-bold text-on-secondary-fixed mb-2">Concierge Tip</h4>
+<p class="text-sm text-on-secondary-fixed-variant leading-relaxed">Quantify your impact. Resumes with at least 3 metric-driven achievements see 45% higher match rates.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 bg-slate-50">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-8 max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="text-sm font-bold text-slate-900 brand-font">NexHire AI</div>
+<p class="text-slate-600 font-inter text-xs tracking-wide">© 2024 NexHire AI. Your Intelligent Career Concierge.</p>
+</div>
+<div class="flex gap-8 mt-8 md:mt-0">
+<a class="text-slate-500 hover:text-blue-900 font-inter text-xs tracking-wide transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-900 font-inter text-xs tracking-wide transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-900 font-inter text-xs tracking-wide transition-colors" href="#">AI Ethics</a>
+<a class="text-slate-500 hover:text-blue-900 font-inter text-xs tracking-wide transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

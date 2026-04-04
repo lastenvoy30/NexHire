@@ -1,6 +1,13 @@
 import { useAuth } from '../hooks/useAuth'
-import { useNavigate } from 'react-router'
+import { useNavigate, useLocation, NavLink } from 'react-router'
 import '../../../style/navbar.scss'
+
+const NAV_TABS = [
+    { label: 'Dashboard', path: '/dashboard' },
+    { label: 'Resume Lab', path: '/resume-lab' },
+    { label: 'Job Match', path: '/job-match' },
+    { label: 'Interview Prep', path: '/interview-prep' },
+]
 
 const Navbar = () => {
     const { user, handleLogout } = useAuth()
@@ -16,8 +23,23 @@ const Navbar = () => {
             <div className='navbar__brand' onClick={() => navigate('/')}>
                 Nex<span>Hire</span>
             </div>
+
+            <div className='navbar__tabs'>
+                {NAV_TABS.map(tab => (
+                    <NavLink
+                        key={tab.path}
+                        to={tab.path}
+                        className={({ isActive }) =>
+                            `navbar__tab${isActive ? ' navbar__tab--active' : ''}`
+                        }
+                    >
+                        {tab.label}
+                    </NavLink>
+                ))}
+            </div>
+
             <div className='navbar__right'>
-                {user && (
+                {user ? (
                     <>
                         <span className='navbar__user'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -27,6 +49,11 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                             Logout
                         </button>
+                    </>
+                ) : (
+                    <>
+                        <button className='navbar__login' onClick={() => navigate('/login')}>Log In</button>
+                        <button className='navbar__cta' onClick={() => navigate('/register')}>Get Started</button>
                     </>
                 )}
             </div>
